@@ -1,6 +1,7 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+print_r($show_complete_tasks);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -71,8 +72,9 @@ $show_complete_tasks = rand(0, 1);
                     </nav>
 
                     <label class="checkbox">
+                  
                         <!--добавить сюда атрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox">
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?= ($show_complete_tasks === 1) ? "checked" : '' ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
@@ -92,6 +94,20 @@ $show_complete_tasks = rand(0, 1);
 
                         <td class="task__date"></td>
                     </tr>
+                 <?php if ($show_complete_tasks === 1): ?>
+                    <tr class="tasks__item task task--completed">
+                        <td class="task__select">
+                            <label class="checkbox task__checkbox">
+                            <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                            <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
+                            </label>
+                        </td>
+                        <td class="task__date">10.10.2019</td>
+                        <td class="task__controls"></td>
+                    </tr>
+                <?php endif; ?>
+
+                    
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
                 </table>
             </main>
@@ -106,7 +122,6 @@ $show_complete_tasks = rand(0, 1);
 
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
-
         <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
 
         <div class="main-footer__social social">
